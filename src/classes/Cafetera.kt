@@ -1,17 +1,17 @@
 package classes
 
-// Constructor primario
-class Cafetera(val ubicacion: String) {
 
-    private var capacidad: Int = 1000
-    private var cantidad: Int = 0
+class Cafetera(private val ubicacion: String) {
 
-    // Constructor con ubicación y capacidad
+    var capacidad: Int = 1000
+    var cantidad: Int = 0
+
+
     constructor(ubicacion: String, capacidad: Int) : this(ubicacion) {
         this.capacidad = capacidad
     }
 
-    // Constructor con ubicación, capacidad y cantidad
+
     constructor(ubicacion: String, capacidad: Int, cantidad: Int) : this(ubicacion) {
         this.capacidad = capacidad
         this.cantidad = cantidad
@@ -25,18 +25,17 @@ class Cafetera(val ubicacion: String) {
         cantidad = capacidad
     }
 
-    // servirTaza(Taza): simula la acción de servir una taza con la capacidad que tenga la taza. Si la cafetera tiene café,
-    // llenará la taza y restará la cantidad servida en la cantidad de la cafetera.
-    // Si la cantidad actual de café “no alcanza” para llenar la taza, se sirve lo que quede. Actualizar la cantidad de la cafetera y aplicar el método adecuado de la taza.
     fun servirTaza(t: Taza) {
-        if(cantidad != 0) {
-            if (cantidad - t.cantidad < 0) {
-                t.cantidad = cantidad
-                cantidad - t.cantidad
+        if (cantidad > 0) {
+            if (cantidad >= t.capacidad) {
+                t.llenar(capacidad)
+                cantidad -= t.capacidad
             } else {
-                cantidad -= t.cantidad
                 t.llenar()
+                cantidad = 0
             }
+        } else {
+            println("No queda café en la cafetera...")
         }
     }
 
@@ -48,7 +47,7 @@ class Cafetera(val ubicacion: String) {
         if(cantidadCafe > 1000) {
             llenar()
         } else {
-            cantidad += cantidadCafe
+            cantidad = cantidadCafe
         }
     }
 

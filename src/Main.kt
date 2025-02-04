@@ -29,7 +29,6 @@ fun main() {
         println(taza)
     }
 
-
     println("**********************************************")
     println("Llenar la cafetera1 de café...")
     println("Vaciar la cafetera2...")
@@ -39,13 +38,11 @@ fun main() {
     //TODO: Llenar la cafetera1 de café.
     cafetera1.llenar()
 
-
     //TODO: Vaciar la cafetera2.
     cafetera2.vaciar()
 
-
     //TODO: Agregar café a la cafetera2 a la mitad de su capacidad.
-    cafetera2.agregarCafe(500)
+    cafetera2.agregarCafe(cafetera2.capacidad / 2)
 
     //TODO: Agregar 400 c.c. de café a la cafereta3
     cafetera3.agregarCafe(400)
@@ -56,13 +53,33 @@ fun main() {
     println(cafetera2)
     println(cafetera3)
 
-
     println("**********************************************")
     println("Servir café en las tazas...")
 
     //TODO: Servir café en las tazas... siempre que haya café en la cafetera y en el orden cafetera1, cafetera2 y cafetera3.
+    if (cafetera1.cantidad > 0) {
+        for (taza in listaTazas) {
+            if (taza.cantidad < taza.capacidad) {
+                cafetera1.servirTaza(taza)
+            }
+        }
+    }
 
+    if (cafetera2.cantidad > 0) {
+        for (taza in listaTazas) {
+            if (taza.cantidad < taza.capacidad) {
+                cafetera2.servirTaza(taza)
+            }
+        }
+    }
 
+    if (cafetera3.cantidad > 0) {
+        for (taza in listaTazas) {
+            if (taza.cantidad < taza.capacidad) {
+                cafetera3.servirTaza(taza)
+            }
+        }
+    }
 
     println("**********************************************")
     //TODO: Mostrar por pantalla el contenido de las 3 cafeteras y las tazas.

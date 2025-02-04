@@ -1,10 +1,11 @@
 package classes
 
-import kotlin.random.Random
-
 class Taza(var color: Color = Color.BLANCO, var capacidad: Int = 50) {
 
     var cantidad: Int = 0
+        set(value) {
+            field = if (value > capacidad) capacidad else value
+        }
 
     fun llenar() {
         cantidad = capacidad
